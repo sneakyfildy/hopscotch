@@ -73,6 +73,8 @@
     showCloseButton: true,
     showPrevButton: false,
     showNextButton: true,
+    nextButtonHtml: false,
+    prevButtonHtml: false,
     bubbleWidth: 280,
     bubblePadding: 15,
     arrowWidth: 20,
@@ -779,7 +781,9 @@
           showNext: utils.valOrDefault(step.showNextButton, this.opt.showNextButton),
           showCTA: utils.valOrDefault(step.showCTAButton && step.ctaLabel, false),
           ctaLabel: step.ctaLabel,
-          showClose: utils.valOrDefault(this.opt.showCloseButton, true)
+          showClose: utils.valOrDefault(this.opt.showCloseButton, true),
+          nextButtonHtml: utils.valOrDefault(step.nextButtonHtml, this.opt.nextButtonHtml),
+          prevButtonHtml: utils.valOrDefault(step.prevButtonHtml, this.opt.prevButtonHtml)
         },
         step: {
           num: idx,
@@ -1071,6 +1075,8 @@
       opt = {
         showPrevButton: defaultOpts.showPrevButton,
         showNextButton: defaultOpts.showNextButton,
+        nextButtonHtml: defaultOpts.nextButtonHtml,
+        prevButtonHtml: defaultOpts.prevButtonHtml,
         bubbleWidth: defaultOpts.bubbleWidth,
         bubblePadding: defaultOpts.bubblePadding,
         arrowWidth: defaultOpts.arrowWidth,
@@ -1316,6 +1322,8 @@
           bubblePadding: getOption('bubblePadding'),
           bubbleWidth: getOption('bubbleWidth'),
           showNextButton: getOption('showNextButton'),
+          nextButtonHtml: getOption('nextButtonHtml'),
+          prevButtonHtml: getOption('prevButtonHtml'),
           showPrevButton: getOption('showPrevButton'),
           showCloseButton: getOption('showCloseButton'),
           arrowWidth: getOption('arrowWidth'),
@@ -2302,6 +2310,8 @@
      *                               Defaults to FALSE.
      * - showNextButton:  Boolean  - should the bubble have the Next button?
      *                               Defaults to TRUE.
+     * - nextButtonHtml:Boolean|String todo write doc
+     * - prevButtonHtml:Boolean|String todo write doc
      * - arrowWidth:      Number   - Default arrow width. (space between the bubble
      *                               and the targetEl) Used for bubble position
      *                               calculation. Only use this option if you are
@@ -2477,9 +2487,17 @@ __p += '<div class="hopscotch-content">' +
  } ;
 __p += '\n  </div>\n  <div class="hopscotch-actions">\n    ';
  if(buttons.showPrev){ ;
-__p += '<button class="hopscotch-nav-button prev hopscotch-prev">' +
+__p += '<button class="hopscotch-nav-button prev hopscotch-prev">\n        ';
+ if(buttons.prevButtonHtml){ ;
+__p += '\n           ' +
+((__t = ( buttons.prevButtonHtml )) == null ? '' : __t) +
+'\n        ';
+ } else {;
+__p += '\n            ' +
 ((__t = ( i18n.prevBtn )) == null ? '' : __t) +
-'</button>';
+'\n        ';
+ } ;
+__p += '\n  </button>';
  } ;
 __p += '\n    ';
  if(buttons.showCTA){ ;
@@ -2489,9 +2507,17 @@ __p += '<button class="hopscotch-nav-button next hopscotch-cta">' +
  } ;
 __p += '\n    ';
  if(buttons.showNext){ ;
-__p += '<button class="hopscotch-nav-button next hopscotch-next">' +
+__p += '<button class="hopscotch-nav-button next hopscotch-next">\n        ';
+ if(buttons.nextButtonHtml){ ;
+__p += '\n           ' +
+((__t = ( buttons.nextButtonHtml )) == null ? '' : __t) +
+'\n        ';
+ } else {;
+__p += '\n            ' +
 ((__t = ( i18n.nextBtn )) == null ? '' : __t) +
-'</button>';
+'\n        ';
+ } ;
+__p += '\n    </button>';
  } ;
 __p += '\n  </div>\n  ';
  if(buttons.showClose){ ;

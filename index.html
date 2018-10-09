@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sneakyfildy Hopscotch fork</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="dist/js/hopscotch.min.js"></script>
+        <link href="dist/css/hopscotch.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <h1 id="header" style="width: 10px;">My First Hopscotch Tour</h1>
+        <div id="content" style="width: 10px;">
+            <p>Content goes here...</p>
+        </div>
+        <script>
+            var tour = {
+                id: "hello-hopscotch",
+                nextButtonHtml: '<b>Global next</b>',
+                prevButtonHtml: '<b>Global prev</b>',
+                showPrevButton: true,
+                steps: [
+                    {
+                        title: "My Header",
+                        content: "This is the header of my page.",
+                        target: "header",
+                        placement: "right"
+                    },
+                    {
+                        title: "My content",
+                        content: "Here is where I put my content.",
+                        target: document.querySelector("#content p"),
+                        placement: "bottom",
+                        nextButtonHtml: '<b>Local next</b>',
+                    },
+                    {
+                        title: "My content",
+                        content: "Here is where I put my content.",
+                        target: document.querySelector("#content p"),
+                        placement: "bottom",
+                        prevButtonHtml: '<b>Local prev</b>',
+                    }
+                ]
+            };
+
+            // Start the tour!
+            hopscotch.startTour(tour);
+        </script>
+    </body>
+</html>

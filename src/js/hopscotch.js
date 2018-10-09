@@ -46,6 +46,8 @@ defaultOpts       = {
   showCloseButton: true,
   showPrevButton:  false,
   showNextButton:  true,
+  nextButtonHtml:  false,
+  prevButtonHtml:  false,
   bubbleWidth:     280,
   bubblePadding:   15,
   arrowWidth:      20,
@@ -771,7 +773,9 @@ HopscotchBubble.prototype = {
         showNext: utils.valOrDefault(step.showNextButton, this.opt.showNextButton),
         showCTA: utils.valOrDefault((step.showCTAButton && step.ctaLabel), false),
         ctaLabel: step.ctaLabel,
-        showClose: utils.valOrDefault(this.opt.showCloseButton, true)
+        showClose: utils.valOrDefault(this.opt.showCloseButton, true),
+        nextButtonHtml: utils.valOrDefault(step.nextButtonHtml, this.opt.nextButtonHtml),
+        prevButtonHtml: utils.valOrDefault(step.prevButtonHtml, this.opt.prevButtonHtml)
       },
       step:{
         num: idx,
@@ -1063,6 +1067,8 @@ HopscotchBubble.prototype = {
     opt = {
       showPrevButton: defaultOpts.showPrevButton,
       showNextButton: defaultOpts.showNextButton,
+      nextButtonHtml: defaultOpts.nextButtonHtml,
+      prevButtonHtml: defaultOpts.prevButtonHtml,
       bubbleWidth:    defaultOpts.bubbleWidth,
       bubblePadding:  defaultOpts.bubblePadding,
       arrowWidth:     defaultOpts.arrowWidth,
@@ -1308,6 +1314,8 @@ Hopscotch = function(initOptions) {
         bubblePadding:   getOption('bubblePadding'),
         bubbleWidth:     getOption('bubbleWidth'),
         showNextButton:  getOption('showNextButton'),
+        nextButtonHtml:  getOption('nextButtonHtml'),
+        prevButtonHtml:  getOption('prevButtonHtml'),
         showPrevButton:  getOption('showPrevButton'),
         showCloseButton: getOption('showCloseButton'),
         arrowWidth:      getOption('arrowWidth'),
@@ -1839,7 +1847,7 @@ Hopscotch = function(initOptions) {
     // loadTour if we are calling startTour directly. (When we call startTour
     // from window onLoad handler, we'll use currTour)
     if (!currTour) {
-      
+
       // Sanity check! Is there a tour?
       if(!tour){
         throw new Error('Tour data is required for startTour.');
@@ -2304,6 +2312,8 @@ Hopscotch = function(initOptions) {
    *                               Defaults to FALSE.
    * - showNextButton:  Boolean  - should the bubble have the Next button?
    *                               Defaults to TRUE.
+   * - nextButtonHtml:Boolean|String todo write doc
+   * - prevButtonHtml:Boolean|String todo write doc
    * - arrowWidth:      Number   - Default arrow width. (space between the bubble
    *                               and the targetEl) Used for bubble position
    *                               calculation. Only use this option if you are
