@@ -4,7 +4,7 @@
         <title>Sneakyfildy Hopscotch fork</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="dist/js/hopscotch.min.js"></script>
+        <script src="dist/js/hopscotch.js"></script>
         <link href="dist/css/hopscotch.min.css" rel="stylesheet">
     </head>
     <body>
@@ -17,7 +17,9 @@
                 id: "hello-hopscotch",
                 nextButtonHtml: '<b>Global next</b>',
                 prevButtonHtml: '<b>Global prev</b>',
+                ctaButtonHtml: '<b>Global CTA</b>',
                 showPrevButton: true,
+                //showCTAButton: true,
                 steps: [
                     {
                         title: "My Header",
@@ -31,6 +33,8 @@
                         target: document.querySelector("#content p"),
                         placement: "bottom",
                         nextButtonHtml: '<b>Local next</b>',
+                        showCTAButton: true,
+                        ctaLabel: 'local cta label'
                     },
                     {
                         title: "My content",
@@ -38,12 +42,46 @@
                         target: document.querySelector("#content p"),
                         placement: "bottom",
                         prevButtonHtml: '<b>Local prev</b>',
+                        showCTAButton: true,
+                        ctaButtonHtml: '<b>local cta HTML</b>'
                     }
                 ]
             };
 
+            var tour2 = {
+                id: "hello-hopscotch",
+                nextButtonHtml: '<b>Global next</b>',
+                prevButtonHtml: '<b>Global prev</b>',
+                ctaButtonHtml: '<b>Pause</b>',
+                showPrevButton: true,
+                showCTAButton: true,
+                onCTA: function(){console.log('global on cta')},
+                steps: [
+                    {
+                        title: "My Header",
+                        content: "This is the header of my page.",
+                        target: "header",
+                        placement: "right"
+                    },
+                    {
+                        title: "My content",
+                        content: "Here is where I put my content.",
+                        target: document.querySelector("#content p"),
+                        placement: "bottom",
+                        nextButtonHtml: '<b>Local next</b>',
+                        onCTA: function(){console.log('local on cta')},
+                    },
+                    {
+                        title: "My content",
+                        content: "Here is where I put my content.",
+                        target: document.querySelector("#content p"),
+                        placement: "bottom",
+                        prevButtonHtml: '<b>Local prev</b>'
+                    }
+                ]
+            };
             // Start the tour!
-            hopscotch.startTour(tour);
+            hopscotch.startTour(tour2);
         </script>
     </body>
 </html>

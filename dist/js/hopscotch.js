@@ -75,6 +75,8 @@
     showNextButton: true,
     nextButtonHtml: false,
     prevButtonHtml: false,
+    showCTAButton: false,
+    ctaButtonHtml: false,
     bubbleWidth: 280,
     bubblePadding: 15,
     arrowWidth: 20,
@@ -779,11 +781,12 @@
         buttons: {
           showPrev: utils.valOrDefault(step.showPrevButton, this.opt.showPrevButton) && this._getStepNum(idx) > 0,
           showNext: utils.valOrDefault(step.showNextButton, this.opt.showNextButton),
-          showCTA: utils.valOrDefault(step.showCTAButton && step.ctaLabel, false),
+          showCTA: utils.valOrDefault(step.showCTAButton && (step.ctaLabel || step.ctaButtonHtml) || this.opt.showCTAButton && this.opt.ctaButtonHtml, false),
           ctaLabel: step.ctaLabel,
           showClose: utils.valOrDefault(this.opt.showCloseButton, true),
           nextButtonHtml: utils.valOrDefault(step.nextButtonHtml, this.opt.nextButtonHtml),
-          prevButtonHtml: utils.valOrDefault(step.prevButtonHtml, this.opt.prevButtonHtml)
+          prevButtonHtml: utils.valOrDefault(step.prevButtonHtml, this.opt.prevButtonHtml),
+          ctaButtonHtml: step.showCTAButton ? step.ctaButtonHtml : this.opt.ctaButtonHtml ? this.opt.ctaButtonHtml : false
         },
         step: {
           num: idx,
@@ -1022,6 +1025,10 @@
         // Call onCTA callback if one is provided
         if (this.currStep.onCTA) {
           utils.invokeCallback(this.currStep.onCTA);
+        } else {
+          if (this.opt.onCTA) {
+            utils.invokeCallback(this.opt.onCTA);
+          }
         }
       } else if (action === 'next') {
         winHopscotch.nextStep(true);
@@ -1077,6 +1084,8 @@
         showNextButton: defaultOpts.showNextButton,
         nextButtonHtml: defaultOpts.nextButtonHtml,
         prevButtonHtml: defaultOpts.prevButtonHtml,
+        showCTAButton: defaultOpts.prevButtonHtml,
+        ctaButtonHtml: defaultOpts.ctaButtonHtml,
         bubbleWidth: defaultOpts.bubbleWidth,
         bubblePadding: defaultOpts.bubblePadding,
         arrowWidth: defaultOpts.arrowWidth,
@@ -1324,8 +1333,10 @@
           showNextButton: getOption('showNextButton'),
           nextButtonHtml: getOption('nextButtonHtml'),
           prevButtonHtml: getOption('prevButtonHtml'),
+          ctaButtonHtml: getOption('ctaButtonHtml'),
           showPrevButton: getOption('showPrevButton'),
           showCloseButton: getOption('showCloseButton'),
+          showCTAButton: getOption('showCTAButton'),
           arrowWidth: getOption('arrowWidth'),
           isRtl: getOption('isRtl')
         });
@@ -2310,8 +2321,11 @@
      *                               Defaults to FALSE.
      * - showNextButton:  Boolean  - should the bubble have the Next button?
      *                               Defaults to TRUE.
+     * - showCTAButton:   Boolean  - todo write doc
+     *                               Defaults to FALSE
      * - nextButtonHtml:Boolean|String todo write doc
      * - prevButtonHtml:Boolean|String todo write doc
+     * - ctaButtonHtml:Boolean|String todo write doc
      * - arrowWidth:      Number   - Default arrow width. (space between the bubble
      *                               and the targetEl) Used for bubble position
      *                               calculation. Only use this option if you are
@@ -2343,7 +2357,9 @@
      * - onEnd:           Function - Invoked when the tour ends.
      * - onClose:         Function - Invoked when the user closes the tour before finishing.
      * - onError:         Function - Invoked when the specified target element doesn't exist on the page.
-     *
+     * - onCTA:           Function - Global override for CTA click, buttons handler
+     *                      overrides the global
+    *
      * // ====
      * // I18N
      * // ====
@@ -2487,37 +2503,45 @@ __p += '<div class="hopscotch-content">' +
  } ;
 __p += '\n  </div>\n  <div class="hopscotch-actions">\n    ';
  if(buttons.showPrev){ ;
-__p += '<button class="hopscotch-nav-button prev hopscotch-prev">\n        ';
+__p += '\n        <button class="hopscotch-nav-button prev hopscotch-prev">\n            ';
  if(buttons.prevButtonHtml){ ;
-__p += '\n           ' +
+__p += '\n               ' +
 ((__t = ( buttons.prevButtonHtml )) == null ? '' : __t) +
-'\n        ';
+'\n            ';
  } else {;
-__p += '\n            ' +
+__p += '\n                ' +
 ((__t = ( i18n.prevBtn )) == null ? '' : __t) +
-'\n        ';
+'\n            ';
  } ;
-__p += '\n  </button>';
+__p += '\n      </button>\n    ';
  } ;
 __p += '\n    ';
  if(buttons.showCTA){ ;
-__p += '<button class="hopscotch-nav-button next hopscotch-cta">' +
-((__t = ( buttons.ctaLabel )) == null ? '' : __t) +
-'</button>';
- } ;
-__p += '\n    ';
- if(buttons.showNext){ ;
-__p += '<button class="hopscotch-nav-button next hopscotch-next">\n        ';
- if(buttons.nextButtonHtml){ ;
+__p += '\n        <button class="hopscotch-nav-button next hopscotch-cta">\n        ';
+ if(buttons.ctaButtonHtml){ ;
 __p += '\n           ' +
-((__t = ( buttons.nextButtonHtml )) == null ? '' : __t) +
+((__t = ( buttons.ctaButtonHtml )) == null ? '' : __t) +
 '\n        ';
  } else {;
 __p += '\n            ' +
-((__t = ( i18n.nextBtn )) == null ? '' : __t) +
+((__t = ( buttons.ctaLabel )) == null ? '' : __t) +
 '\n        ';
  } ;
-__p += '\n    </button>';
+__p += '\n        </button>\n    ';
+ } ;
+__p += '\n    ';
+ if(buttons.showNext){ ;
+__p += '\n        <button class="hopscotch-nav-button next hopscotch-next">\n            ';
+ if(buttons.nextButtonHtml){ ;
+__p += '\n               ' +
+((__t = ( buttons.nextButtonHtml )) == null ? '' : __t) +
+'\n            ';
+ } else {;
+__p += '\n                ' +
+((__t = ( i18n.nextBtn )) == null ? '' : __t) +
+'\n            ';
+ } ;
+__p += '\n        </button>\n    ';
  } ;
 __p += '\n  </div>\n  ';
  if(buttons.showClose){ ;
