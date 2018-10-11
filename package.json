@@ -1,7 +1,7 @@
 {
-  "name": "hopscotch",
+  "name": "hopscotch-iow",
   "version": "0.3.1",
-  "description": "A framework to make it easy for developers to add product tours to their pages.",
+  "description": "A framework to make it easy for developers to add product tours to their pages. Forked untested version",
   "main": "dist/js/hopscotch.min.js",
   "directories": {
     "test": "test"
