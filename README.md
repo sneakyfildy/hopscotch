@@ -1,3 +1,6 @@
+THIS IS A FORKED VERSION WITH SEVERAL NEW HIGHLY EXPECTED FEATURES
+NOT TESTED AND NOT DOCUMENTED!!!
+
 ![Example Hopscotch tour](/demo/img/screenshot.png)
 
 Hopscotch [![Build Status](https://api.travis-ci.org/linkedin/hopscotch.png)](http://travis-ci.org/linkedin/hopscotch)
