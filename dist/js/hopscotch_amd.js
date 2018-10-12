@@ -1,4 +1,4 @@
-/**! hopscotch - v0.3.1
+/**! @sneakyfildy/hopscotch - v0.3.1
 *
 * Copyright 2017 LinkedIn Corp. All rights reserved.
 *
@@ -70,6 +70,7 @@ define('hopscotch', function () { 'use strict';
     showPrevButton: false,
     showNextButton: true,
     nextButtonHtml: false,
+    doneButtonHtml: false,
     prevButtonHtml: false,
     showCTAButton: false,
     ctaButtonHtml: false,
@@ -780,7 +781,7 @@ define('hopscotch', function () { 'use strict';
           showCTA: utils.valOrDefault(step.showCTAButton && (step.ctaLabel || step.ctaButtonHtml) || this.opt.showCTAButton && this.opt.ctaButtonHtml, false),
           ctaLabel: step.ctaLabel,
           showClose: utils.valOrDefault(this.opt.showCloseButton, true),
-          nextButtonHtml: utils.valOrDefault(step.nextButtonHtml, this.opt.nextButtonHtml),
+          nextButtonHtml: isLast ? utils.valOrDefault(step.doneButtonHtml, this.opt.doneButtonHtml) : utils.valOrDefault(step.nextButtonHtml, this.opt.nextButtonHtml),
           prevButtonHtml: utils.valOrDefault(step.prevButtonHtml, this.opt.prevButtonHtml),
           ctaButtonHtml: step.showCTAButton ? step.ctaButtonHtml : this.opt.ctaButtonHtml ? this.opt.ctaButtonHtml : false
         },
@@ -1079,6 +1080,7 @@ define('hopscotch', function () { 'use strict';
         showPrevButton: defaultOpts.showPrevButton,
         showNextButton: defaultOpts.showNextButton,
         nextButtonHtml: defaultOpts.nextButtonHtml,
+        doneButtonHtml: defaultOpts.doneButtonHtml,
         prevButtonHtml: defaultOpts.prevButtonHtml,
         showCTAButton: defaultOpts.prevButtonHtml,
         ctaButtonHtml: defaultOpts.ctaButtonHtml,
@@ -1327,6 +1329,7 @@ define('hopscotch', function () { 'use strict';
           bubblePadding: getOption('bubblePadding'),
           bubbleWidth: getOption('bubbleWidth'),
           showNextButton: getOption('showNextButton'),
+          doneButtonHtml: getOption('doneButtonHtml'),
           nextButtonHtml: getOption('nextButtonHtml'),
           prevButtonHtml: getOption('prevButtonHtml'),
           ctaButtonHtml: getOption('ctaButtonHtml'),
@@ -2319,6 +2322,7 @@ define('hopscotch', function () { 'use strict';
      *                               Defaults to TRUE.
      * - showCTAButton:   Boolean  - todo write doc
      *                               Defaults to FALSE
+     * - doneButtonHtml   Boolean  - todo write doc
      * - nextButtonHtml:Boolean|String todo write doc
      * - prevButtonHtml:Boolean|String todo write doc
      * - ctaButtonHtml:Boolean|String todo write doc

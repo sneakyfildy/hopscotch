@@ -1,5 +1,6 @@
 THIS IS A FORKED VERSION WITH SEVERAL NEW HIGHLY EXPECTED FEATURES
 NOT TESTED AND NOT DOCUMENTED!!!
+0.3.2 + doneButtonHtml
 
 ![Example Hopscotch tour](/demo/img/screenshot.png)
 
