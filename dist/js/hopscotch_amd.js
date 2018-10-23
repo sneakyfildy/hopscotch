@@ -566,7 +566,8 @@ define('hopscotch', function () { 'use strict';
     end: [],
     show: [],
     error: [],
-    close: []
+    close: [],
+    clearState: []
   };
 
   /**
@@ -2020,12 +2021,10 @@ define('hopscotch', function () { 'use strict';
         }
       }
 
-      currStepNum = 0;
-      cookieTourStep = undefined;
-
       bubble.hide();
       if (clearState) {
         utils.clearState(getOption('cookieName'));
+        //utils.invokeEventCallbacks('clearState');
       }
       if (this.isActive) {
         this.isActive = false;
@@ -2034,6 +2033,9 @@ define('hopscotch', function () { 'use strict';
           utils.invokeEventCallbacks('end');
         }
       }
+
+      currStepNum = 0;
+      cookieTourStep = undefined;
 
       this.removeCallbacks(null, true);
       this.resetDefaultOptions();
@@ -2270,7 +2272,7 @@ define('hopscotch', function () { 'use strict';
      */
     _configure = function _configure(options, isTourOptions) {
       var bubble,
-          events = ['next', 'prev', 'start', 'end', 'show', 'error', 'close'],
+          events = ['next', 'prev', 'start', 'end', 'show', 'error', 'close', 'clearState'],
           eventPropName,
           callbackProp,
           i,

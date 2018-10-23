@@ -549,7 +549,8 @@ callbacks = {
   end:   [],
   show:  [],
   error: [],
-  close: []
+  close: [],
+  clearState: []
 };
 
 /**
@@ -2023,12 +2024,12 @@ Hopscotch = function(initOptions) {
       }
     }
 
-    currStepNum    = 0;
-    cookieTourStep = undefined;
+
 
     bubble.hide();
     if (clearState) {
       utils.clearState(getOption('cookieName'));
+      //utils.invokeEventCallbacks('clearState');
     }
     if (this.isActive) {
       this.isActive = false;
@@ -2037,6 +2038,9 @@ Hopscotch = function(initOptions) {
         utils.invokeEventCallbacks('end');
       }
     }
+
+    currStepNum    = 0;
+    cookieTourStep = undefined;
 
     this.removeCallbacks(null, true);
     this.resetDefaultOptions();
@@ -2277,7 +2281,7 @@ Hopscotch = function(initOptions) {
    */
   _configure = function(options, isTourOptions) {
     var bubble,
-        events = ['next', 'prev', 'start', 'end', 'show', 'error', 'close'],
+        events = ['next', 'prev', 'start', 'end', 'show', 'error', 'close', 'clearState'],
         eventPropName,
         callbackProp,
         i,
