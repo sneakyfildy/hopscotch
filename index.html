@@ -10,7 +10,9 @@
     <body>
         <h1 id="header" style="width: 10px;">My First Hopscotch Tour</h1>
         <div id="content" style="width: 10px;">
-            <p>Content goes here...</p>
+            <p class="c1">Content 1</p>
+            <p class="c2">Content 2</p>
+            <p class="c3">Content 3</p>
         </div>
         <script>
             var tour = {
@@ -19,7 +21,7 @@
                 prevButtonHtml: '<b>Global prev</b>',
                 ctaButtonHtml: '<b>Global CTA</b>',
                 showPrevButton: true,
-                //showCTAButton: true,
+                showCTAButton: false,
                 steps: [
                     {
                         title: "My Header",
@@ -29,12 +31,12 @@
                     },
                     {
                         title: "My content",
-                        content: "Here is where I put my content.",
-                        target: document.querySelector("#content p"),
+                        content: "Here is where I pu566756t my content.",
+                        target: document.querySelector("#content .c3"),
+                        clickNextTarget: '#content',
                         placement: "bottom",
                         nextButtonHtml: '<b>Local next</b>',
                         showCTAButton: true,
-                        ctaLabel: 'local cta label'
                     },
                     {
                         title: "My content",
@@ -82,7 +84,7 @@
                 ]
             };
             // Start the tour!
-            hopscotch.startTour(tour2);
+            hopscotch.startTour(tour);
         </script>
     </body>
 </html>

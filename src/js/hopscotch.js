@@ -762,6 +762,9 @@ HopscotchBubble.prototype = {
 
     this.placement = step.placement;
 
+    var ctaButtonHtml = step.ctaButtonHtml || this.opt.ctaButtonHtml || false;
+    var showCTA = ( this.opt.showCTAButton || step.showCTAButton ) &&
+            (this.opt.ctaButtonHtml || step.ctaButtonHtml || step.ctaLabel);
     // Setup the configuration options we want to pass along to the template
     opts = {
       i18n: {
@@ -774,18 +777,14 @@ HopscotchBubble.prototype = {
       buttons:{
         showPrev: (utils.valOrDefault(step.showPrevButton, this.opt.showPrevButton) && (this._getStepNum(idx) > 0)),
         showNext: utils.valOrDefault(step.showNextButton, this.opt.showNextButton),
-        showCTA: utils.valOrDefault((step.showCTAButton && (step.ctaLabel || step.ctaButtonHtml)) ||
-            (this.opt.showCTAButton && this.opt.ctaButtonHtml), false),
+        showCTA: showCTA,
         ctaLabel: step.ctaLabel,
         showClose: utils.valOrDefault(this.opt.showCloseButton, true),
         nextButtonHtml: isLast ?
             utils.valOrDefault(step.doneButtonHtml, this.opt.doneButtonHtml) :
             utils.valOrDefault(step.nextButtonHtml, this.opt.nextButtonHtml),
         prevButtonHtml: utils.valOrDefault(step.prevButtonHtml, this.opt.prevButtonHtml),
-        ctaButtonHtml: step.showCTAButton ?
-            step.ctaButtonHtml :
-                this.opt.ctaButtonHtml ?
-                    this.opt.ctaButtonHtml : false
+        ctaButtonHtml: ctaButtonHtml
       },
       step:{
         num: idx,
