@@ -2029,7 +2029,7 @@ Hopscotch = function(initOptions) {
     bubble.hide();
     if (clearState) {
       utils.clearState(getOption('cookieName'));
-      //utils.invokeEventCallbacks('clearState');
+      utils.invokeEventCallbacks('clearState');
     }
     if (this.isActive) {
       this.isActive = false;

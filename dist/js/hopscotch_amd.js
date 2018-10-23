@@ -1,4 +1,4 @@
-/**! @sneakyfildy/hopscotch - v0.3.4
+/**! @sneakyfildy/hopscotch - v0.3.6
 *
 * Copyright 2017 LinkedIn Corp. All rights reserved.
 *
@@ -2024,7 +2024,7 @@ define('hopscotch', function () { 'use strict';
       bubble.hide();
       if (clearState) {
         utils.clearState(getOption('cookieName'));
-        //utils.invokeEventCallbacks('clearState');
+        utils.invokeEventCallbacks('clearState');
       }
       if (this.isActive) {
         this.isActive = false;
