@@ -548,6 +548,7 @@ callbacks = {
   start: [],
   end:   [],
   show:  [],
+  beforeShow:  [],
   error: [],
   close: [],
   clearState: []
@@ -1544,6 +1545,7 @@ Hopscotch = function(initOptions) {
       step = getCurrStep();
 
       goToStepFn = function() {
+        utils.invokeEventCallbacks('beforeShow', step.onBeforeShow);
         target = utils.getStepTarget(step);
 
         if (target) {

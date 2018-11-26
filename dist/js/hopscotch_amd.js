@@ -565,6 +565,7 @@ define('hopscotch', function () { 'use strict';
     start: [],
     end: [],
     show: [],
+    beforeShow: [],
     error: [],
     close: [],
     clearState: []
@@ -1555,6 +1556,7 @@ define('hopscotch', function () { 'use strict';
         step = getCurrStep();
 
         goToStepFn = function goToStepFn() {
+          utils.invokeEventCallbacks('beforeShow', step.onBeforeShow);
           target = utils.getStepTarget(step);
 
           if (target) {

@@ -569,6 +569,7 @@
     start: [],
     end: [],
     show: [],
+    beforeShow: [],
     error: [],
     close: [],
     clearState: []
@@ -1559,6 +1560,7 @@
         step = getCurrStep();
 
         goToStepFn = function goToStepFn() {
+          utils.invokeEventCallbacks('beforeShow', step.onBeforeShow);
           target = utils.getStepTarget(step);
 
           if (target) {

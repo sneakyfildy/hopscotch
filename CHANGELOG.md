@@ -1,5 +1,8 @@
 ## Change Log
 
+### v0.3.7 (2017/06/02)
+ * onBeforeShow event to be able to create target on-the-fly (no tests)
+
 ### v0.3.0 (2017/06/02)
  * [#337](https://github.com/linkedin/hopscotch/pull/337) Refactor build to generate UMD and AMD artifacts
 

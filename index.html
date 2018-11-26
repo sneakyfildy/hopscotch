@@ -83,8 +83,38 @@
                     }
                 ]
             };
+            if (hopscotch) {
+                hopscotch.registerHelper('createDiv', function(){debugger;
+                    var div = document.createElement('span');
+                    div.id = 'newDiv';
+                    div.innerHTML = 'dynamically created (shown) element';
+                    document.body.appendChild(div);
+                });
+            }
+            // features onBeforeShow
+            var tour3 = {
+                id: "hello-hopscotch",
+                steps: [
+                    {
+                        title: "My Header 3",
+                        content: "This is the header of my page.",
+                        target: "header",
+                        placement: "right",
+                        //onShow: ['createDiv'],
+
+                    },
+                    {
+                        title: "onBeforeShow",
+                        content: "This div was created on before showing this tip",
+                        target: "newDiv",
+                        placement: "right",
+                        onBeforeShow: ['createDiv']
+                    }
+                ]
+            };
+            window.sessionStorage.clear();
             // Start the tour!
-            hopscotch.startTour(tour);
+            hopscotch.startTour(tour3);
         </script>
     </body>
 </html>
