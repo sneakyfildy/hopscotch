@@ -1,4 +1,4 @@
-/**! @sneakyfildy/hopscotch - v0.3.7
+/**! @sneakyfildy/hopscotch - v0.3.8
 *
 * Copyright 2017 LinkedIn Corp. All rights reserved.
 *
@@ -262,7 +262,7 @@ define('hopscotch', function () { 'use strict';
           len;
 
       if (stepCb) {
-        return this.invokeCallback(stepCb);
+        this.invokeCallback(stepCb);
       }
 
       for (i = 0, len = cbArr.length; i < len; ++i) {

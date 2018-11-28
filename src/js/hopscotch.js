@@ -241,7 +241,7 @@ utils = {
         len;
 
     if (stepCb) {
-      return this.invokeCallback(stepCb);
+      this.invokeCallback(stepCb);
     }
 
     for (i=0, len=cbArr.length; i<len; ++i) {

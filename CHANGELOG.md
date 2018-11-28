@@ -1,6 +1,8 @@
 ## Change Log
+### v0.3.9 (2018/11/28)
+ * fix for https://github.com/linkedin/hopscotch/issues/297
 
-### v0.3.7 (2017/06/02)
+### v0.3.7 (2018/11/28)
  * onBeforeShow event to be able to create target on-the-fly (no tests)
 
 ### v0.3.0 (2017/06/02)
