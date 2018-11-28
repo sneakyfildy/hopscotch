@@ -1,4 +1,4 @@
-/**! @sneakyfildy/hopscotch - v0.3.6
+/**! @sneakyfildy/hopscotch - v0.3.7
 *
 * Copyright 2017 LinkedIn Corp. All rights reserved.
 *
@@ -1916,6 +1916,8 @@
 
       // Find the current step we should begin the tour on, and then actually start the tour.
       findStartingStep(currStepNum, skippedSteps, function (stepNum) {
+        var step = currTour.steps[stepNum];
+        utils.invokeEventCallbacks('beforeShow', step.onBeforeShow);
         var target = stepNum !== -1 && utils.getStepTarget(currTour.steps[stepNum]);
 
         if (!target) {

@@ -1913,6 +1913,8 @@ Hopscotch = function(initOptions) {
 
     // Find the current step we should begin the tour on, and then actually start the tour.
     findStartingStep(currStepNum, skippedSteps, function(stepNum) {
+      var step = currTour.steps[stepNum];
+      utils.invokeEventCallbacks('beforeShow', step.onBeforeShow);
       var target = (stepNum !== -1) && utils.getStepTarget(currTour.steps[stepNum]);
 
       if (!target) {
