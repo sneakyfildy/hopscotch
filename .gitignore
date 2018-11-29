@@ -9,3 +9,4 @@ _SpecRunner.html
 jsconfig.json
 npm-debug.log
 /package-lock.json
+/nbproject/private/
