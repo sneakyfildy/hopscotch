@@ -1,4 +1,4 @@
-/**! @sneakyfildy/hopscotch - v0.3.9
+/**! @sneakyfildy/hopscotch - v0.3.10
 *
 * Copyright 2017 LinkedIn Corp. All rights reserved.
 *
@@ -570,6 +570,7 @@
     end: [],
     show: [],
     beforeShow: [],
+    beforeNext: [],
     error: [],
     close: [],
     clearState: []
@@ -1552,10 +1553,12 @@
      * @param {Function} cb The callback function to be invoked when the step has been found
      */
     goToStepWithTarget = function goToStepWithTarget(direction, cb) {
-      var target, step, goToStepFn;
+      var target, prevStep, step, goToStepFn;
 
       if (currStepNum + direction >= 0 && currStepNum + direction < currTour.steps.length) {
 
+        prevStep = getCurrStep();
+        utils.invokeEventCallbacks('beforeNext', prevStep.onBeforeNext);
         currStepNum += direction;
         step = getCurrStep();
 

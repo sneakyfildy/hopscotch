@@ -101,6 +101,9 @@
                         target: "header",
                         placement: "right",
                         //onShow: ['createDiv'],
+                        onBeforeNext: function() {
+                            console.log(hopscotch.getCurrTarget());
+                        }
 
                     },
                     {

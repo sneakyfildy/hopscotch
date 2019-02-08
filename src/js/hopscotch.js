@@ -549,6 +549,7 @@ callbacks = {
   end:   [],
   show:  [],
   beforeShow:  [],
+  beforeNext:  [],
   error: [],
   close: [],
   clearState: []
@@ -1535,12 +1536,15 @@ Hopscotch = function(initOptions) {
    */
   goToStepWithTarget = function(direction, cb) {
     var target,
+        prevStep,
         step,
         goToStepFn;
 
     if (currStepNum + direction >= 0 &&
         currStepNum + direction < currTour.steps.length) {
 
+      prevStep = getCurrStep();
+      utils.invokeEventCallbacks('beforeNext', prevStep.onBeforeNext);
       currStepNum += direction;
       step = getCurrStep();
 
